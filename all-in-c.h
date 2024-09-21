@@ -4,12 +4,13 @@
 // Structure containing a function pointer and its call argument/flag
 typedef struct{
     char callArgument[50];
-    void (*execute)();
+    int (*execute)();
 }functionMap_t;
 
 // Prints out each command line argument on a new line (including executed command)
-// int argc - no. of arguments
-// char **argv - pointer to array of arguments
-void commandLineArguments(int argc, char **argv);
+int commandLineArguments(int argc, char **argv);
+
+// Manipulates files
+int fileAccess(int argc, char **argv);
 
 #endif

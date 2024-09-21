@@ -1,28 +1,37 @@
 #include "all-in-c.h"
+#include <stdio.h>
+
+#define PROGRAMS_TOTAL (sizeof(programs) / sizeof(programs[0]))
 
 // Stores all the main functions of the programs and their call arguments
 const functionMap_t programs[] = 
 {
-    {"--command-line-arguments", commandLineArguments}
+    {"command-line-arguments", commandLineArguments},
+    {"file-access", fileAccess}
 };
 
 int main(int argc, char **argv){
-    // Attempts to match the index 1 command line argument with a function call argument
+    // Validates command line index 1 program input
+    if(argc == 1 || *(argv[1]++) != '-' || *(argv[1]++) != '-'){
+        fprintf(stderr, "ERROR: No program specified - index 1 command line argument not '--[program-name]'\n");
+        return 1;
+    }
 
-    // Iterates through all indexed programs
-    for(int i = 0; i < sizeof(programs) / sizeof(programs[0]); i++)
-        // Iterates through each character in the function call argument string
-        for(int j = 0; j < sizeof(programs[0].callArgument) / sizeof(programs[0].callArgument[0]); j++){
-            // Breaks out of current string comparison if not a character match
+    // Attempts to match the index 1 command line argument with a function call argument
+    for(int i = 0; i < PROGRAMS_TOTAL; i++)
+        for(int j = 0; j < sizeof(programs[0].callArgument) / sizeof(char); j++){
+            // Match failed
             if(argv[1][j] != programs[i].callArgument[j])
                 break;
-            // Executes program if both the command line and function call arguments are out of index
+
+            // Match succeeded
             if(!programs[i].callArgument[j] && !argv[1][j]){
-                // Executes program with all arguments (excluding the binary name)
-                programs[i].execute(argc - 1, argv + 1);
-                return 0;
+                // Executes program with all command line arguments (excluding the caller)
+                printf("Running %s ...\n\n", programs[i].callArgument);
+                return programs[i].execute(argc - 1, argv + 1);
             }
         }
-    // Could not find program
+
+    fprintf(stderr, "ERROR: Could not find specified program - index 1 command line argument not matching any in program list\n");
     return 1;
 }
