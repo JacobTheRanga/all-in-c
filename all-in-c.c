@@ -7,13 +7,23 @@
 const functionMap_t programs[] = 
 {
     {"command-line-arguments", commandLineArguments},
-    {"file-access", fileAccess}
+    {"file-access", fileAccess},
+    {"timer", timer},
+    {"run-command", runCommand}
 };
+
+void printPrograms(){
+    printf("\nUse one of the below scripts as an argument followed by their own required arguments:\n");
+    for(int i = 0; i < PROGRAMS_TOTAL; i++){
+        printf("--%s\n", programs[i].callArgument);
+    }
+}
 
 int main(int argc, char **argv){
     // Validates command line index 1 program input
     if(argc == 1 || *(argv[1]++) != '-' || *(argv[1]++) != '-'){
         fprintf(stderr, "ERROR: No program specified - index 1 command line argument not '--[program-name]'\n");
+        printPrograms();
         return 1;
     }
 
@@ -33,5 +43,6 @@ int main(int argc, char **argv){
         }
 
     fprintf(stderr, "ERROR: Could not find specified program - index 1 command line argument not matching any in program list\n");
+    printPrograms();
     return 1;
 }

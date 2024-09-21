@@ -10,7 +10,13 @@ typedef struct{
 // Prints out each command line argument on a new line (including executed command)
 int commandLineArguments(int argc, char **argv);
 
-// Manipulates files
+// Read/write/append files
 int fileAccess(int argc, char **argv);
+
+// Times duration of a command in seconds
+int timer(int argc, char **argv);
+
+// Executes command given in command line argument
+int runCommand(int argc, char **argv);
 
 #endif

@@ -5,6 +5,37 @@
 #define INPUT_STRING (argv[3])
 
 // Reads file to stdout
+int read(char *filename);
+
+// Writes to file
+int write(char *filename, char *str);
+
+// Appends to end of file
+int append(char *filename, char *str);
+
+// Read/write/append files
+int fileAccess(int argc, char **argv){
+    if(argc <= 2){
+        fprintf(stderr, "ERROR: Invalid number of arguments - need '-[r/w/a/x] [file]'\n");
+        return 1;
+    }
+
+    if(*(argv[1]++) != '-' || !INPUT_FILE){
+        fprintf(stderr, "ERROR: Invalid argument format - need '-[r/w/x] [file]'\n");
+        return 1;
+    }
+
+    if(MODE == 'r')
+        return read(INPUT_FILE);
+    if(MODE == 'w' && INPUT_STRING)
+        return write(INPUT_FILE, INPUT_STRING);
+    if(MODE == 'a' && INPUT_STRING)
+        return append(INPUT_FILE, INPUT_STRING);
+    fprintf(stderr, "ERROR: No string to write to file - need another argument containing the string to write\n");
+    return 1;
+}
+
+// Reads file to stdout
 int read(char *filename){
     FILE *fp = fopen(filename, "r");
     if(!fp){
@@ -40,26 +71,4 @@ int append(char *filename, char *str){
     fputs(str, fp);
     fclose(fp);
     return 0;
-}
-
-// Manipulates files
-int fileAccess(int argc, char **argv){
-    if(argc <= 2){
-        fprintf(stderr, "ERROR: Invalid number of arguments - need '-[r/w/a/x] [file]'\n");
-        return 1;
-    }
-
-    if(*(argv[1]++) != '-' || !INPUT_FILE){
-        fprintf(stderr, "ERROR: Invalid argument format - need '-[r/w/x] [file]'\n");
-        return 1;
-    }
-
-    if(MODE == 'r')
-        return read(INPUT_FILE);
-    if(MODE == 'w' && INPUT_STRING)
-        return write(INPUT_FILE, INPUT_STRING);
-    if(MODE == 'a' && INPUT_STRING)
-        return append(INPUT_FILE, INPUT_STRING);
-    fprintf(stderr, "ERROR: No string to write to file - need another argument containing the string to write\n");
-    return 1;
 }
