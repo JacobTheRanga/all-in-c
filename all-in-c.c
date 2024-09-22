@@ -9,7 +9,8 @@ const functionMap_t programs[] =
     {"command-line-arguments", commandLineArguments},
     {"file-access", fileAccess},
     {"timer", timer},
-    {"run-command", runCommand}
+    {"run-command", runCommand},
+    {"file-operations", fileOperations}
 };
 
 void printPrograms(){

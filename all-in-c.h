@@ -19,4 +19,7 @@ int timer(int argc, char **argv);
 // Executes command given in command line argument
 int runCommand(int argc, char **argv);
 
+// Remove/rename files or create temp file with data
+int fileOperations(int argc, char **argv);
+
 #endif

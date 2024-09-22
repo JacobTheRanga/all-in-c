@@ -4,9 +4,7 @@ An assortment of different types of scripts, programs, and projects all written 
 
 From the C standard library, the utilities I will allow myself to use may include but are not limited to <stdio.h> for convenient standard input/output and **some** general utilities provided in <stdlib.h> involving random numbers and memory management.
 
-## Usage
-
-### Setup ***IMPORTANT***
+## Setup/Build \*IMPORTANT\*
 
 ```sh
 Usage: make
@@ -15,8 +13,8 @@ Usage: make
 
 I have provided a Makefile that should make it really simple to build the binary. I would strongly recommend to quickly read it through since it is quite short and then alter it if necessary. By default, the only prerequisites needed are GCC and GNU Make.
 
-#### Expected build output
-```bash
+### Expected build output
+```sh
 $ make
 mkdir obj
 gcc -o obj/commandLineArguments.o -c src/commandLineArguments.c
@@ -27,13 +25,13 @@ mkdir bin
 gcc -o bin/all-in-c all-in-c.c all-in-c.h obj/commandLineArguments.o obj/fileAccess.o obj/runCommand.o obj/timer.o
 ```
 
-#### Delete object and binary directories and files
-```bash
+### Delete object and binary directories and files
+```sh
 $ make clean
 rm -r ./obj ./bin
 ```
 
-### All-in-C *Parent caller of all other scripts*
+## All-in-C \*Parent caller of all other scripts\*
 
 ```sh
 Usage: all-in-c [KNOWN_SCRIPT] ...
@@ -43,7 +41,7 @@ Usage: all-in-c [KNOWN_SCRIPT] ...
 
 Executes the script specified in the first command line argument.
 
-```bash
+```sh
 $ ./bin/all-in-c --commandLineArguments "Hello World!"
 Running command-line-arguments ...
 
@@ -51,7 +49,7 @@ Argument [0]: command-line-arguments
 Argument [1]: Hello World!
 ```
 
-### Command-line Arguments
+## Command-line Arguments
 
 ```sh
 Usage: --command-line-arguments ...
@@ -61,7 +59,7 @@ Usage: --command-line-arguments ...
 
 Prints out each command-line argument on a new line (including executed command).
 
-```bash
+```sh
 $ ./bin/all-in-c --command-line-arguments -g 42 --file "bob.txt"
 Running command-line-arguments ...
 
@@ -72,7 +70,7 @@ Argument [3]: --file
 Argument [4]: bob.txt
 ```
 
-### File Access
+## File Access
 
 ```sh
 Usage: --file-access -r [FILE]
@@ -84,27 +82,27 @@ Usage: --file-access -r [FILE]
 
 Read, write, and append files.
 
-#### Write
-```bash
+### Write
+```sh
 $ ./bin/all-in-c --file-access -w bob.txt Hello
 Running file-access ...
 ```
 
-#### Append
-```bash
+### Append
+```sh
 $ ./bin/all-in-c --file-access -a bob.txt " World!"$'\n'
 Running file-access ...
 ```
 
-#### Read
-```bash
+### Read
+```sh
 $ ./bin/all-in-c --file-access -r bob.txt
 Running file-access ...
 
 Hello World!
 ```
 
-### Timer
+## Timer
 
 ```sh
 Usage: --timer [COMMAND]
@@ -114,7 +112,7 @@ Usage: --timer [COMMAND]
 
 Times duration of a command in seconds.
 
-```bash
+```sh
 $ ./bin/all-in-c --timer "./bin/all-in-c --file-access -r bob.txt"
 Running timer ...
 
@@ -125,7 +123,7 @@ Hello World!
 (0.000108s)
 ```
 
-### Run Command
+## Run Command
 
 ```sh
 Usage: --run-command [COMMAND]
@@ -135,7 +133,7 @@ Usage: --run-command [COMMAND]
 
 Executes command given in command line argument.
 
-```bash
+```sh
 $ ./bin/all-in-c --run-command './bin/all-in-c --timer "./bin/all-in-c --file-access -r bob.txt"'
 Running run-command ...
 
