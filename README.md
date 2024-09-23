@@ -145,3 +145,44 @@ Hello World!
 
 (0.000120s)
 ```
+
+## File Operations
+
+```sh
+Usage: --file-operations --rename [FILE] [NEW_NAME]
+                         --remove [FILE]
+                         --tmpfile [STRING]
+```
+
+**Source:** *src/fileOperations.c*
+
+Remove or rename files or create a temp file with data
+
+### Rename
+```sh
+$ ls | grep ^.*\.txt
+bob.txt
+$ ./bin/all-in-c --file-operations --rename bob.txt bobby.txt
+Running file-operations ...
+
+$ ls | grep ^.*\.txt
+bobby.txt
+```
+
+### Remove
+```sh
+$ ls | grep ^.*\.txt
+bobby.txt
+$ ./bin/all-in-c --file-operations --remove bobby.txt
+Running file-operations ...
+
+$ ls | grep ^.*\.txt
+```
+
+### Temp File
+```sh
+$ ./bin/all-in-c --file-operations --tmpfile "Hello World!"
+Running file-operations ...
+
+Data contained in temp file: Hello World!
+```
