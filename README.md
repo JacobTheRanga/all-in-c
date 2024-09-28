@@ -186,3 +186,22 @@ Running file-operations ...
 
 Data contained in temp file: Hello World!
 ```
+
+## POSIX System Calls
+
+```sh
+Usage: --syscall [STRING]
+```
+
+**Source:** *src/posixSyscalls.c*
+
+Invokes a variety of pre-implemented system calls.
+**Only works on unix-based systems.**
+
+### Write System Call
+```sh
+$ ./bin/all-in-c --syscall "Hello World!"
+Running syscall ...
+
+Hello World!
+```

@@ -5,13 +5,13 @@
 #define INPUT_STRING (argv[3])
 
 // Reads file to stdout
-int read(char *filename);
+int readFile(char *filename);
 
 // Writes to file
-int write(char *filename, char *str);
+int writeFile(char *filename, char *str);
 
 // Appends to end of file
-int append(char *filename, char *str);
+int appendFile(char *filename, char *str);
 
 // Read/write/append files
 int fileAccess(int argc, char **argv){
@@ -26,17 +26,17 @@ int fileAccess(int argc, char **argv){
     }
 
     if(MODE == 'r')
-        return read(INPUT_FILE);
+        return readFile(INPUT_FILE);
     if(MODE == 'w' && INPUT_STRING)
-        return write(INPUT_FILE, INPUT_STRING);
+        return writeFile(INPUT_FILE, INPUT_STRING);
     if(MODE == 'a' && INPUT_STRING)
-        return append(INPUT_FILE, INPUT_STRING);
+        return appendFile(INPUT_FILE, INPUT_STRING);
     fprintf(stderr, "ERROR: No string to write to file - need another argument containing the string to write\n");
     return 1;
 }
 
 // Reads file to stdout
-int read(char *filename){
+int readFile(char *filename){
     FILE *fp = fopen(filename, "r");
     if(!fp){
         fprintf(stderr, "ERROR: file does not exist\n");
@@ -50,7 +50,7 @@ int read(char *filename){
 }
 
 // Writes to file
-int write(char *filename, char *str){
+int writeFile(char *filename, char *str){
     FILE *fp = fopen(filename, "wx");
     if(!fp){
         fprintf(stderr, "ERROR: file already exists - did you want to append?\n");
@@ -62,7 +62,7 @@ int write(char *filename, char *str){
 }
 
 // Appends to end of file
-int append(char *filename, char *str){
+int appendFile(char *filename, char *str){
     FILE *fp = fopen(filename, "a");
     if(!fp){
         fprintf(stderr, "ERROR: file does not exist\n");

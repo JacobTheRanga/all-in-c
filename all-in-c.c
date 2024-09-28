@@ -10,7 +10,8 @@ const functionMap_t programs[] =
     {"file-access", fileAccess},
     {"timer", timer},
     {"run-command", runCommand},
-    {"file-operations", fileOperations}
+    {"file-operations", fileOperations},
+    {"syscall",posixSyscalls}
 };
 
 void printPrograms(){
