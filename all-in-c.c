@@ -11,7 +11,8 @@ const functionMap_t programs[] =
     {"timer", timer},
     {"run-command", runCommand},
     {"file-operations", fileOperations},
-    {"syscall",posixSyscalls}
+    {"syscall", posixSyscalls},
+    {"strings", strings}
 };
 
 void printPrograms(){

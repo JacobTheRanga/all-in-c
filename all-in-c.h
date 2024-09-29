@@ -26,4 +26,7 @@ int fileOperations(int argc, char **argv);
 // **Only works on unix-based systems**
 int posixSyscalls(int argc, char **argv);
 
+// Own implementation of some functions in the <string.h> libc header
+int strings(int argc, char **argv);
+
 #endif /*ALL_IN_C_H*/
