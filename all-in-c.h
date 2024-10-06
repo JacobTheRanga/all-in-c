@@ -29,4 +29,7 @@ int posixSyscalls(int argc, char **argv);
 // Own implementation of some functions in the <string.h> libc header
 int strings(int argc, char **argv);
 
+// Example of dynamic allocation in C with binary trees
+int binaryTree(int argc, char **argv);
+
 #endif /*ALL_IN_C_H*/

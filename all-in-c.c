@@ -12,7 +12,8 @@ const functionMap_t programs[] =
     {"run-command", runCommand},
     {"file-operations", fileOperations},
     {"syscall", posixSyscalls},
-    {"strings", strings}
+    {"strings", strings},
+    {"binary-tree", binaryTree}
 };
 
 void printPrograms(){

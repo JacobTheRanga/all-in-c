@@ -2,8 +2,7 @@
 
 An assortment of different types of scripts, programs, and projects
 all written in C using the C standard library only when reasonably necessary
-or for use in comparison sake and the occasional standard framework
-for purposes such as graphics rendering.
+or for use in comparison sake.
 
 From the C standard library, the utilities I will allow myself to use may include
 but are not limited to <stdio.h> for convenient standard input/output
@@ -252,4 +251,63 @@ $ ./bin/all-in-c --strings --isalnum @bob123
 Running strings ...
 
 FALSE
+```
+
+## Binary Tree
+
+```
+Usage: --binary-tree
+```
+
+**Source:** *src/binaryTree.c*
+
+Example of dynamic memory allocation in C with binary trees.
+Uses the malloc function in the C standard library that allocates
+memory space for each node in the binary tree, and the returns a pointer
+to that newly allocated memory space.
+
+There is no user input for this one at all, or any fancy way of printing
+out the binary tree. This is just a simple demonstration of allocating
+memory, so all it does is allocate, use, print out the memory contents,
+and then free said memory.
+
+```
+$ ./bin/all-in-c --binary-tree
+Running binary-tree ...
+
+HEAD
+     ( 5)
+    /    \
+( 3)      ( 1)
+
+LEFT BRANCH
+     ( 3)
+    /    \
+(12)      (65)
+
+LEFT LEFT BRANCH
+     (12)
+    /    \
+(88)      ( 0)
+
+LEFT RIGHT BRANCH
+     (65)
+    /    \
+( 0)      ( 0)
+
+RIGHT BRANCH
+     ( 1)
+    /    \
+( 0)      ( 0)
+
+HEAD AFTER LEFT DELETE
+     ( 5)
+    /    \
+( 0)      ( 1)
+
+HEAD AFTER RIGHT DELETE
+     ( 5)
+    /    \
+( 0)      ( 0)
+
 ```
